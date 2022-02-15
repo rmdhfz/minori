@@ -7,7 +7,7 @@ $query_builder = TRUE;
 $host = "localhost";
 $user = "root";
 $pass = "";
-$database = "";
+$database = "minori";
 
 $db['default'] = array(
 	'dsn'	=> '',

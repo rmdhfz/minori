@@ -10,4 +10,13 @@ class Frontend extends CI_Controller {
 	function index(){
 		$this->load->view('frontend/index');
 	}
+	function karyawanData()
+	{
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+			http_response_code(405);
+			return;
+		}
+		$this->load->model('model');
+		$this->model->data_karyawan();
+	}
 }
