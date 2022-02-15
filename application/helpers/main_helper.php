@@ -160,6 +160,13 @@ if ( ! function_exists('is_logged_in')){
     return $CI->session->userdata('is_login');
   }
 }
+if (!function_exists('response')) {
+  function response(bool $status = null, int $code = 200, string $msg = "Message is null.", $data = null)
+  {
+    http_response_code($code);
+    return ['status' => $status, 'code' => $code, 'msg' => $msg, 'data' => $data];
+  }
+}
 if ( ! function_exists('JSON')) {
   function json($data=''){
     $CI =& get_instance();

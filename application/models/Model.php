@@ -24,6 +24,29 @@ class Model extends CI_Model {
 				$value->created_at
 			];
 		}
-		echo json_encode($result);
+		json($result);
+	}
+	function simpan_karyawan()
+	{
+		$nip		= post('nip');
+		$nama		= post('nama');
+		$jabatan	= post('jabatan');
+
+		$this->load->database();
+		$check = $this->db->query("SELECT nip FROM karyawan WHERE nip = ?", [$nip])->num_rows();
+		if ($check > 0) {
+			json(response(false, 400, 'nip sudah terdaftar'));
+		}
+
+		$simpan = $this->db->insert('karyawan', [
+			'nip'		=> $nip,
+			'nama'		=> $nama,
+			'jabatan'	=> $jabatan
+		]);
+
+		if (!$simpan) {
+			json(response(false, 500, 'gagal simpan data karyawan'));
+		}
+		json(response(true, 200, 'berhasil simpan data karyawan'));
 	}
 }

@@ -19,4 +19,13 @@ class Frontend extends CI_Controller {
 		$this->load->model('model');
 		$this->model->data_karyawan();
 	}
+	function karyawanSimpan()
+	{
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+			http_response_code(405);
+			return;
+		}
+		$this->load->model('model');
+		$this->model->simpan_karyawan();
+	}
 }
