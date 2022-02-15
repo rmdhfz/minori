@@ -71,7 +71,7 @@
           </div>
           <div class="modal-body">
             <form id="form-karyawan" method="post" autocomplete="false" accept-charset="utf-8">
-              <input type="hidden" name="id">
+              <input type="hidden" name="id" id="id">
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label"> NIP </label>
                 <div class="col-sm-5">
@@ -109,6 +109,9 @@
 </body>
 <script type="text/javascript">
   $(document).ready(function() {
+    function ReloadTable(id){
+      id.ajax.reload();
+    }
     let table;
     table = $("#table-karyawan").DataTable({
       serverside: true,
@@ -130,18 +133,22 @@
       if (confirm("Apa data yang anda masukan sudah benar ?")) {
         $.post(url, data).done((res,xhr,status) => {
           alert(`Berhasil ${act} data karyawan`);
+          ReloadTable(table);
         }).fail((xhr,status,err) => {
           alert(`Gagal ${act} data karyawan`);
+          ReloadTable(table);
         })
       }
     });
     $("#table-karyawan").on('click', '#edit', function(event) {
       event.preventDefault();
-      const nip = $(this).data('nip');
-      $.post('karyawan/id', {nip: nip}).done((res,xhr,status) => {
-        if (xhr.status == 200) {
-
-        }
+      const id = $(this).data('id');
+      $.post('karyawan/id', {id: id}).done((res,xhr,status) => {
+        $("#id").val(res.data.id);
+        $("#nip").val(res.data.nip);
+        $("#nama").val(res.data.nama);
+        $("#jabatan").val(res.data.jabatan);
+        $("#modal-karyawan").modal('show');
       })
     });
   });
