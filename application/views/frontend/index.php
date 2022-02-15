@@ -12,6 +12,11 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" media="screen, projection">
   <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" importance="low"></script>
   <!-- datatable -->
+  <style type="text/css">
+    a {
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="container"><br>
@@ -118,18 +123,26 @@
     });
     $("#form-karyawan").submit(function(event) {
       event.preventDefault();
-      
-      let url;
+      let url, act;
       const data = $(this).serialize(), id = $("#id").val(); 
       id ? url = "karyawan/edit" : url = "karyawan/simpan";
-      
+      id ? act = 'edit' : act = 'simpan';
       if (confirm("Apa data yang anda masukan sudah benar ?")) {
         $.post(url, data).done((res,xhr,status) => {
-
+          alert(`Berhasil ${act} data karyawan`);
         }).fail((xhr,status,err) => {
-
+          alert(`Gagal ${act} data karyawan`);
         })
       }
+    });
+    $("#table-karyawan").on('click', '#edit', function(event) {
+      event.preventDefault();
+      const nip = $(this).data('nip');
+      $.post('karyawan/id', {nip: nip}).done((res,xhr,status) => {
+        if (xhr.status == 200) {
+
+        }
+      })
     });
   });
 </script>

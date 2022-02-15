@@ -23,8 +23,8 @@ class Model extends CI_Model {
 				$value->nip,
 				$value->nama,
 				$value->jabatan,
-				$value->created_at,
-				"<a id='edit'>edit</a> | <a id='delete'>delete</a>"
+				change_format_date($value->created_at),
+				"<a id='edit' data-nip='$value->nip'>edit</a> | <a id='delete' data-nip='$value->nip'>delete</a>"
 			];
 		}
 		json($result);
@@ -54,29 +54,29 @@ class Model extends CI_Model {
 	}
 	function id_karyawan()
 	{
-		$id = post('id');
+		$nip = post('nip');
 		$this->load->database();
-		$check = $this->db->query("SELECT id FROM karyawan WHERE id = ?", [$id])->num_rows();
+		$check = $this->db->query("SELECT nip FROM karyawan WHERE nip = ?", [$nip])->num_rows();
 		if ($check == 0) {
 			json(response(false, 400, 'data karyawan tidak ditemukan'));
 		}
-		$data = $this->db->query("SELECT * FROM karyawan WHERE id = ?", [$id])->result();
+		$data = $this->db->query("SELECT * FROM karyawan WHERE nip = ?", [$nip])->row();
 		json(response(true, 200, 'berhasil ambil data karyawan', $data));
 	}
 	function edit_karyawan()
 	{
-		$id			= post('id');
+		$nip			= post('nip');
 		$nip		= post('nip');
 		$nama		= post('nama');
 		$jabatan	= post('jabatan');
 
 		$this->load->database();
-		$check = $this->db->query("SELECT id FROM karyawan WHERE id = ?", [$id])->num_rows();
+		$check = $this->db->query("SELECT nip FROM karyawan WHERE nip = ?", [$nip])->num_rows();
 		if ($check == 0) {
 			json(response(false, 400, 'data karyawan tidak ditemukan'));
 		}
 
-		$edit = $this->db->where('id', $id)->update('karyawan', [
+		$edit = $this->db->where('nip', $nip)->update('karyawan', [
 			'nip'		=> $nip,
 			'nama'		=> $nama,
 			'jabatan'	=> $jabatan
@@ -89,13 +89,13 @@ class Model extends CI_Model {
 	}
 	function hapus_karyawan()
 	{
-		$id = post('id');
+		$nip = post('nip');
 		$this->load->database();
-		$check = $this->db->query("SELECT id FROM karyawan WHERE id = ?", [$id])->num_rows();
+		$check = $this->db->query("SELECT nip FROM karyawan WHERE nip = ?", [$nip])->num_rows();
 		if ($check == 0) {
 			json(response(false, 400, 'data karyawan tidak ditemukan'));
 		}
-		$hapus = $this->db->where('id', $id)->delete('karyawan');
+		$hapus = $this->db->where('nip', $nip)->delete('karyawan');
 		if (!$edit) {
 			json(response(false, 500, 'gagal hapus data karyawan'));
 		}

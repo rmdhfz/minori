@@ -104,12 +104,10 @@ if ( ! function_exists('BulanToRomawi')) {
 }
 if ( ! function_exists('change_format_date')) {
   function change_format_date($date){
-    if ($date) {
-      $code = date('d-m-Y H:i:s', strtotime(str_replace('-', '/', $date)));
-      return $code;
-    }else{
+    if (!$date) {
       return '-';
     }
+    return date('d-m-Y H:i:s', strtotime(str_replace('-', '/', $date)));
   }
 }
 if ( ! function_exists('formatBytes')) {
