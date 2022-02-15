@@ -52,6 +52,17 @@ class Model extends CI_Model {
 		}
 		json(response(true, 200, 'berhasil simpan data karyawan'));
 	}
+	function id_karyawan()
+	{
+		$id = post('id');
+		$this->load->database();
+		$check = $this->db->query("SELECT id FROM karyawan WHERE id = ?", [$id])->num_rows();
+		if ($check == 0) {
+			json(response(false, 400, 'data karyawan tidak ditemukan'));
+		}
+		$data = $this->db->query("SELECT * FROM karyawan WHERE id = ?", [$id])->result();
+		json(response(true, 200, 'berhasil ambil data karyawan', $data));
+	}
 	function edit_karyawan()
 	{
 		$id			= post('id');
@@ -75,5 +86,19 @@ class Model extends CI_Model {
 			json(response(false, 500, 'gagal edit data karyawan'));
 		}
 		json(response(true, 200, 'berhasil edit data karyawan'));
+	}
+	function hapus_karyawan()
+	{
+		$id = post('id');
+		$this->load->database();
+		$check = $this->db->query("SELECT id FROM karyawan WHERE id = ?", [$id])->num_rows();
+		if ($check == 0) {
+			json(response(false, 400, 'data karyawan tidak ditemukan'));
+		}
+		$hapus = $this->db->where('id', $id)->delete('karyawan');
+		if (!$edit) {
+			json(response(false, 500, 'gagal hapus data karyawan'));
+		}
+		json(response(true, 200, 'berhasil hapus data karyawan'));
 	}
 }
