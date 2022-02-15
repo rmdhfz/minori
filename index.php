@@ -24,8 +24,8 @@
 		exit(1); die(1);
 	}
 
-	$system = 'engine';
-	$app = 'app';
+	$system = 'system';
+	$app = 'application';
 	$view = '';
 
 	if (defined('STDIN')){ chdir(dirname(__FILE__)); }
