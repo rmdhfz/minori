@@ -105,4 +105,14 @@ class Frontend extends CI_Controller {
 		$this->load->model('model');
 		$this->model->hapus_training();
 	}
+	// ------------------------------------------------------------------------
+	function trainingKaryawanData()
+	{
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+			http_response_code(405);
+			return;
+		}
+		$this->load->model('model');
+		$this->model->training_karyawan_data();
+	}
 }

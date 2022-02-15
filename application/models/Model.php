@@ -187,4 +187,26 @@ class Model extends CI_Model {
 		}
 		json(response(true, 200, 'berhasil hapus data training'));
 	}
+	// ------------------------------------------------------------------------
+	function training_karyawan_data()
+	{
+		$this->load->database();
+		$data = $this->db->query("SELECT t.*, k.nip, k.nama FROM training t INNER JOIN karyawan k ON t.id_karyawan = k.id");
+		if ($data->num_rows() == 0) {
+			echo json_encode(null);
+			return;
+		}
+		$result = ['data' => []];
+		$no = 0;
+		foreach ($data->result() as $key => $value) { $no++;
+			$result['data'][$key] = [
+				$no,
+				$value->nip,
+				$value->nama,
+				$value->jenis,
+				date('d-m-Y', strtotime(str_replace('-', '/', $value->tanggal_sertifikat)))
+			];
+		}
+		json($result);
+	}
 }

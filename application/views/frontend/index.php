@@ -20,7 +20,7 @@
 </head>
 <body>
   <div class="container"><br>
-    <h2>Test Kompetensi IT PT.Minori - 15 Februari 2022</h2> <hr>
+    <h2>Test Kompetensi IT PT.Minori - 15 Februari 2022</h2> <small>Repository: <a href="https://github.com/rmdhfz/minori" target="_blank">Source Code - Github</a></small> <hr>
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#karyawan" aria-controls="karyawan" role="tab" data-toggle="tab">Data Karyawan</a></li>
       <li role="presentation"><a href="#training" aria-controls="training" role="tab" data-toggle="tab">Data Training</a></li>
@@ -83,7 +83,7 @@
           </table>
         </div>
       </div>
-      <div role="tabpanel" class="tab-pane" id="karyawantraining">
+      <div role="tabpanel" class="tab-pane" id="karyawantraining"><br>
         <div class="dt-responsive table-responsive">
           <table id="table-training-karyawan" class="table nowrap" style="width: 100%;">
             <thead>
@@ -91,9 +91,8 @@
                 <th>No.</th>
                 <th>NIP</th>
                 <th>Nama Karyawan</th>
-                <th>Jenis</th>
+                <th>Jenis Sertifikat</th>
                 <th>Tanggal Sertifikat</th>
-                <th>Opsi</th>
               </tr>
             </thead>
             <tfoot>
@@ -101,9 +100,8 @@
                 <th>No.</th>
                 <th>NIP</th>
                 <th>Nama Karyawan</th>
-                <th>Jenis</th>
+                <th>Jenis Sertifikat</th>
                 <th>Tanggal Sertifikat</th>
-                <th>Opsi</th>
               </tr>
             </tfoot>
           </table>
@@ -206,7 +204,12 @@
       </div>
       <!-- modals -->
       <center>
-        <small><a href="https://linkedin.com/in/hfzrmd" target="_blank">Copyright @ 2022. By Hafiz Ramadhan</a></small>
+        <small><a href="https://linkedin.com/in/hfzrmd" target="_blank">Copyright @ 2022. By Hafiz Ramadhan</a></small><br>
+        <small>
+          <a href="https://linkedin.com/in/hfzrmd" target="_blank">Linkedin</a>
+          <a href="https://github.com/rmdhfz" target="_blank">Github</a>
+          <a href="https://instagram.com/hfzrmd" target="_blank">Instagram</a>
+        </small>
       </center>
     </div>
   </body>
@@ -314,6 +317,18 @@
             ReloadTable(table);
           })
         }
+      });
+
+      table = $("#table-training-karyawan").DataTable({
+        serverside: true,
+        ajax: {
+          type: "post",
+          url: "training-karyawan/data",
+        },
+        language: {
+          zeroRecords: "<center> Data tidak ditemukan </center>",
+        },
+        responsive: "true",
       });
     });
   </script>

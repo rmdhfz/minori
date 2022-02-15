@@ -18,4 +18,6 @@ $route = [
 	'training/id'			=> 'Frontend/trainingId',
 	'training/edit'			=> 'Frontend/trainingEdit',
 	'training/hapus'		=> 'Frontend/trainingHapus',
+
+	'training-karyawan/data'=> 'Frontend/trainingKaryawanData',
 ];
