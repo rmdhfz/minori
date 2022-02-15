@@ -13,6 +13,7 @@ $route = [
 	'karyawan/hapus'		=> 'Frontend/karyawanHapus',
 
 	'training'				=> 'Frontend/training',
+	'training/data'			=> 'Frontend/trainingData',
 	'training/simpan'		=> 'Frontend/trainingSimpan',
 	'training/id'			=> 'Frontend/trainingId',
 	'training/edit'			=> 'Frontend/trainingEdit',

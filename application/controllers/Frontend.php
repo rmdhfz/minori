@@ -8,7 +8,11 @@ class Frontend extends CI_Controller {
 		parent::__construct();
 	}
 	function index(){
-		$this->load->view('frontend/index');
+		$this->load->database();
+		$data = [
+			'karyawan' => $this->db->query("SELECT id, nip, nama FROM karyawan")->result()
+		];
+		$this->load->view('frontend/index', $data);
 	}
 	function karyawanData()
 	{
@@ -54,5 +58,51 @@ class Frontend extends CI_Controller {
 		}
 		$this->load->model('model');
 		$this->model->hapus_karyawan();
+	}
+	// ------------------------------------------------------------------------
+	function trainingData()
+	{
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+			http_response_code(405);
+			return;
+		}
+		$this->load->model('model');
+		$this->model->data_training();
+	}
+	function trainingSimpan()
+	{
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+			http_response_code(405);
+			return;
+		}
+		$this->load->model('model');
+		$this->model->simpan_training();
+	}
+	function trainingId()
+	{
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+			http_response_code(405);
+			return;
+		}
+		$this->load->model('model');
+		$this->model->id_training();
+	}
+	function trainingEdit()
+	{
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+			http_response_code(405);
+			return;
+		}
+		$this->load->model('model');
+		$this->model->edit_training();
+	}
+	function trainingHapus()
+	{
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+			http_response_code(405);
+			return;
+		}
+		$this->load->model('model');
+		$this->model->hapus_training();
 	}
 }

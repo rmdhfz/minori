@@ -56,111 +56,265 @@
         </div>
       </div>
       <!-- tab karyawan -->
-      <div role="tabpanel" class="tab-pane" id="training">...</div>
-      <div role="tabpanel" class="tab-pane" id="karyawantraining">...</div>
-    </div>
-    <!-- modals -->
-    <div class="modal fade modal-flex" id="modal-karyawan" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header" style="background-color: #337ab7 !important;">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" style="color: white;">Form Karyawan</h4>
-          </div>
-          <div class="modal-body">
-            <form id="form-karyawan" method="post" autocomplete="false" accept-charset="utf-8">
-              <input type="hidden" name="id" id="id">
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label"> NIP </label>
-                <div class="col-sm-5">
-                  <input type="text"name="nip"id="nip"class="form-control"required="1"placeholder="nip karyawan"pattern="[0-9]{10,10}"minlength="10"maxlength="10"data-toggle="tooltip"data-placement="top"title="nip karyawan" autocomplete="off" autofocus/>
+      <div role="tabpanel" class="tab-pane" id="training"><br>
+        <button class="btn btn-sm btn-flat btn-primary" data-toggle="modal" data-target="#modal-training" data-backdrop="static" data-keyboard="false">Tambah Training Karyawan</button> <br><br>
+        <div class="dt-responsive table-responsive">
+          <table id="table-training" class="table nowrap" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Jenis</th>
+                <th>Tanggal Sertifikat</th>
+                <th>NIP</th>
+                <th>Tanggal Input</th>
+                <th>Opsi</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>No.</th>
+                <th>Jenis</th>
+                <th>Tanggal Sertifikat</th>
+                <th>NIP</th>
+                <th>Tanggal Input</th>
+                <th>Opsi</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="karyawantraining">
+        <div class="dt-responsive table-responsive">
+          <table id="table-training-karyawan" class="table nowrap" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>NIP</th>
+                <th>Nama Karyawan</th>
+                <th>Jenis</th>
+                <th>Tanggal Sertifikat</th>
+                <th>Opsi</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>No.</th>
+                <th>NIP</th>
+                <th>Nama Karyawan</th>
+                <th>Jenis</th>
+                <th>Tanggal Sertifikat</th>
+                <th>Opsi</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <!-- modals -->
+      <div class="modal fade modal-flex" id="modal-karyawan" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: #337ab7 !important;">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" style="color: white;">Form Karyawan</h4>
+            </div>
+            <div class="modal-body">
+              <form id="form-karyawan" method="post" autocomplete="false" accept-charset="utf-8">
+                <input type="hidden" name="id" id="id">
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label"> NIP </label>
+                  <div class="col-sm-5">
+                    <input type="text"name="nip"id="nip"class="form-control"required="1"placeholder="nip karyawan"pattern="[0-9]{10,10}"minlength="10"maxlength="10"data-toggle="tooltip"data-placement="top"title="nip karyawan" autocomplete="off" autofocus/>
+                  </div>
+                  <div class="col-sm-5">
+                    <input type="text"name="nama"id="nama"class="form-control"required="1"placeholder="nama karyawan"pattern="[a-zA-Z\s]{3,35}"minlength="2"maxlength="35"data-toggle="tooltip"data-placement="top"title="nama karyawan" autocomplete="off"/>
+                  </div>
                 </div>
-                <div class="col-sm-5">
-                  <input type="text"name="nama"id="nama"class="form-control"required="1"placeholder="nama karyawan"pattern="[a-zA-Z\s]{3,35}"minlength="2"maxlength="35"data-toggle="tooltip"data-placement="top"title="nama karyawan" autocomplete="off"/>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label"> Jabatan </label>
+                  <div class="col-sm-10">
+                    <input type="text"name="jabatan"id="jabatan"class="form-control"required="1"placeholder="jabatan karyawan"pattern="[a-zA-Z\s]{3,35}"minlength="2"maxlength="35"data-toggle="tooltip"data-placement="top"title="jabatan karyawan" autocomplete="off"/>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label"> Jabatan </label>
-                <div class="col-sm-10">
-                  <input type="text"name="jabatan"id="jabatan"class="form-control"required="1"placeholder="jabatan karyawan"pattern="[a-zA-Z\s]{3,35}"minlength="2"maxlength="35"data-toggle="tooltip"data-placement="top"title="jabatan karyawan" autocomplete="off"/>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button type="submit" hidden="1" id="sbtkaryawan" value="1"></button>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-10">
-                  <button type="submit" hidden="1" id="sbtkaryawan" value="1"></button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="$('#sbtkaryawan').click()">Save changes</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="$('#sbtkaryawan').click()">Save changes</button>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="modal fade modal-flex" id="modal-training" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: #337ab7 !important;">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" style="color: white;">Form Training Karyawan</h4>
+            </div>
+            <div class="modal-body">
+              <form id="form-training" method="post" autocomplete="false" accept-charset="utf-8">
+                <input type="hidden" name="id" id="idtraining">
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label"> Karyawan </label>
+                  <div class="col-sm-5">
+                    <select id="karyawan" name="karyawan" required="1" class="form-control">
+                      <option value="" disabled="1" selected="1">-- Pilih Karyawan --</option>
+                      <?php
+                        foreach ($karyawan as $data) { ?>
+                          <option value="<?php echo $data->id; ?>"><?php echo $data->nip;?> - <?php echo $data->nama;?></option>
+                        <?php };?>
+                    </select>
+                  </div>
+                  <div class="col-sm-5">
+                    <select id="jenis" name="jenis" required="1" class="form-control">
+                      <option value="" disabled="1" selected="1">-- Pilih Sertifikat</option>
+                      <option value="Brevet">Brevet</option>
+                      <option value="Cisco">Cisco</option>
+                      <option value="BNSP">BNSP</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label"> Sertifikat</label>
+                  <div class="col-sm-10">
+                    <input type="date"name="tanggal_sertifikat"id="tanggal_sertifikat"class="form-control"required="1"placeholder="tanggal sertifikat"data-toggle="tooltip"data-placement="top"title="tanggal sertifikat" max="<?php echo date('Y-m-d') ?>" autocomplete="off"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button type="submit" hidden="1" id="sbttraining" value="1"></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="$('#sbttraining').click()">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modals -->
+      <center>
+        <small><a href="https://linkedin.com/in/hfzrmd" target="_blank">Copyright @ 2022. By Hafiz Ramadhan</a></small>
+      </center>
     </div>
-    <!-- modals -->
-    <center>
-      <small><a href="https://linkedin.com/in/hfzrmd" target="_blank">Copyright @ 2022. By Hafiz Ramadhan</a></small>
-    </center>
-  </div>
-</body>
-<script type="text/javascript">
-  $(document).ready(function() {
-    function ReloadTable(id){
-      id.ajax.reload();
-    }
-    let table;
-    table = $("#table-karyawan").DataTable({
-      serverside: true,
-      ajax: {
-        type: "post",
-        url: "karyawan/data",
-      },
-      language: {
-        zeroRecords: "<center> Data tidak ditemukan </center>",
-      },
-      responsive: "true",
-    });
-    $("#form-karyawan").submit(function(event) {
-      event.preventDefault();
-      let url, act;
-      const data = $(this).serialize(), id = $("#id").val(); 
-      id ? url = "karyawan/edit" : url = "karyawan/simpan";
-      id ? act = 'edit' : act = 'simpan';
-      if (confirm("Apa data yang Anda masukan sudah benar ?")) {
-        $.post(url, data).done((res,xhr,status) => {
-          alert(`Berhasil ${act} data karyawan`);
-          ReloadTable(table);
-        }).fail((xhr,status,err) => {
-          alert(`Gagal ${act} data karyawan`);
-          ReloadTable(table);
-        })
+  </body>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      function ReloadTable(id){
+        id.ajax.reload();
       }
-    });
-    $("#table-karyawan").on('click', '#edit', function(event) {
-      event.preventDefault();
-      const id = $(this).data('id');
-      $.post('karyawan/id', {id: id}).done((res,xhr,status) => {
-        $("#id").val(res.data.id);
-        $("#nip").val(res.data.nip);
-        $("#nama").val(res.data.nama);
-        $("#jabatan").val(res.data.jabatan);
-        $("#modal-karyawan").modal('show');
-      })
-    });
-    $("#table-karyawan").on('click', '#delete', function(event) {
-      event.preventDefault();
-      const id = $(this).data('id');
-      if (confirm("Apakah Anda yakin ingin menghapus data ini ? ")) {
-        $.post('karyawan/hapus', {id: id}).done((res,xhr,status) => {
-          alert("Data karyawan berhasil dihapus");
-          ReloadTable(table);
+      let table;
+      table = $("#table-karyawan").DataTable({
+        serverside: true,
+        ajax: {
+          type: "post",
+          url: "karyawan/data",
+        },
+        language: {
+          zeroRecords: "<center> Data tidak ditemukan </center>",
+        },
+        responsive: "true",
+      });
+      $("#form-karyawan").submit(function(event) {
+        event.preventDefault();
+        let url, act;
+        const data = $(this).serialize(), id = $("#id").val(); 
+        id ? url = "karyawan/edit" : url = "karyawan/simpan";
+        id ? act = 'edit' : act = 'simpan';
+        if (confirm("Apa data yang Anda masukan sudah benar ?")) {
+          $.post(url, data).done((res,xhr,status) => {
+            alert(`Berhasil ${act} data karyawan`);
+            ReloadTable(table);
+            window.location.reload(0);
+          }).fail((xhr,status,err) => {
+            alert(`Gagal ${act} data karyawan`);
+            ReloadTable(table);
+            window.location.reload(0);
+          })
+        }
+      });
+      $("#table-karyawan").on('click', '#edit', function(event) {
+        event.preventDefault();
+        const id = $(this).data('id');
+        $.post('karyawan/id', {id: id}).done((res,xhr,status) => {
+          $("#id").val(res.data.id);
+          $("#nip").val(res.data.nip);
+          $("#nama").val(res.data.nama);
+          $("#jabatan").val(res.data.jabatan);
+          $("#modal-karyawan").modal('show');
         })
-      }
+      });
+      $("#table-karyawan").on('click', '#delete', function(event) {
+        event.preventDefault();
+        const id = $(this).data('id');
+        if (confirm("Apakah Anda yakin ingin menghapus data ini ? ")) {
+          $.post('karyawan/hapus', {id: id}).done((res,xhr,status) => {
+            alert("Data karyawan berhasil dihapus");
+            ReloadTable(table);
+          })
+        }
+      });
+
+      table = $("#table-training").DataTable({
+        serverside: true,
+        ajax: {
+          type: "post",
+          url: "training/data",
+        },
+        language: {
+          zeroRecords: "<center> Data tidak ditemukan </center>",
+        },
+        responsive: "true",
+      });
+      $("#form-training").submit(function(event) {
+        event.preventDefault();
+        let url, act;
+        const data = $(this).serialize(), id = $("#idtraining").val(); 
+        id ? url = "training/edit" : url = "training/simpan";
+        id ? act = 'edit' : act = 'simpan';
+        if (confirm("Apa data yang Anda masukan sudah benar ?")) {
+          $.post(url, data).done((res,xhr,status) => {
+            alert(`Berhasil ${act} data training`);
+            ReloadTable(table);
+          }).fail((xhr,status,err) => {
+            alert(`Gagal ${act} data training`);
+            ReloadTable(table);
+          })
+        }
+      });
+      $("#table-training").on('click', '#edit', function(event) {
+        event.preventDefault();
+        const id = $(this).data('id');
+        $.post('training/id', {id: id}).done((res,xhr,status) => {
+          $("#idtraining").val(res.data.id);
+          $(`#karyawan option[value='${res.data.id_karyawan}']`).prop('selected', true);
+          $("#jenis").val(res.data.jenis);
+          $("#tanggal_sertifikat").val(res.data.tanggal_sertifikat);
+          $("#modal-training").modal('show');
+        })
+      });
+      $("#table-training").on('click', '#delete', function(event) {
+        event.preventDefault();
+        const id = $(this).data('id');
+        if (confirm("Apakah Anda yakin ingin menghapus data ini ? ")) {
+          $.post('training/hapus', {id: id}).done((res,xhr,status) => {
+            alert("Data training berhasil dihapus");
+            ReloadTable(table);
+          })
+        }
+      });
     });
-  });
-</script>
-</html>
+  </script>
+  </html>
