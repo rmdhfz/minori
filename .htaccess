@@ -1,0 +1,30 @@
+## REMOVE INDEX.PHP START ##
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteCond $1 !^(index\.php|images|resources|robots\.txt)
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+</IfModule>
+## REMOVE INDEX.PHP END ##
+## EXPIRES CACHING START ##
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresByType image/x-icon "access 1 year"
+	ExpiresByType image/jpg "access 1 year"
+	ExpiresByType image/jpeg "access 1 year"
+	ExpiresByType image/gif "access 1 year"
+	ExpiresByType image/png "access 1 year"
+	ExpiresByType text/css "access 1 month"
+	ExpiresByType text/x-javascript "access 1 month"
+	ExpiresByType application/pdf "access 1 month"
+	ExpiresByType application/x-shockwave-flash "access 1 month"
+	ExpiresByType application/javascript "access 1 month"
+</IfModule>
+## EXPIRES CACHING END ##
+## UPLOAD MAX SIZE ##
+	php_value upload_max_filesize 100M
+	php_value post_max_size 90M
+	php_value max_execution_time 500
+	php_value max_input_time 500
+## END OF UPLOAD MAX SIZE ##
