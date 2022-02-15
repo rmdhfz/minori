@@ -16,12 +16,15 @@ class Model extends CI_Model {
 			return;
 		}
 		$result = ['data' => []];
-		foreach ($data->result() as $key => $value) {
+		$no = 0;
+		foreach ($data->result() as $key => $value) { $no++;
 			$result['data'][$key] = [
+				$no,
 				$value->nip,
 				$value->nama,
 				$value->jabatan,
-				$value->created_at
+				$value->created_at,
+				"<a id='edit'>edit</a> | <a id='delete'>delete</a>"
 			];
 		}
 		json($result);
@@ -48,5 +51,29 @@ class Model extends CI_Model {
 			json(response(false, 500, 'gagal simpan data karyawan'));
 		}
 		json(response(true, 200, 'berhasil simpan data karyawan'));
+	}
+	function edit_karyawan()
+	{
+		$id			= post('id');
+		$nip		= post('nip');
+		$nama		= post('nama');
+		$jabatan	= post('jabatan');
+
+		$this->load->database();
+		$check = $this->db->query("SELECT id FROM karyawan WHERE id = ?", [$id])->num_rows();
+		if ($check == 0) {
+			json(response(false, 400, 'data karyawan tidak ditemukan'));
+		}
+
+		$edit = $this->db->where('id', $id)->update('karyawan', [
+			'nip'		=> $nip,
+			'nama'		=> $nama,
+			'jabatan'	=> $jabatan
+		]);
+
+		if (!$edit) {
+			json(response(false, 500, 'gagal edit data karyawan'));
+		}
+		json(response(true, 200, 'berhasil edit data karyawan'));
 	}
 }
