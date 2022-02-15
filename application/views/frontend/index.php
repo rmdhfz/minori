@@ -24,35 +24,79 @@
     <div class="tab-content">
       <!-- tab karyawan -->
       <div role="tabpanel" class="tab-pane active" id="karyawan"><br>
-          <div class="dt-responsive table-responsive">
-              <table id="table-karyawan" class="table nowrap" style="width: 100%;">
-                  <thead>
-                      <tr>
-                          <th>No.</th>
-                          <th>NIP</th>
-                          <th>Nama</th>
-                          <th>Jabatan</th>
-                          <th>Tanggal</th>
-                          <th>Opsi</th>
-                      </tr>
-                  </thead>
-                  <tfoot>
-                      <tr>
-                          <th>No.</th>
-                          <th>NIP</th>
-                          <th>Nama</th>
-                          <th>Jabatan</th>
-                          <th>Tanggal</th>
-                          <th>Opsi</th>
-                      </tr>
-                  </tfoot>
-              </table>
-          </div>
+        <button class="btn btn-sm btn-flat btn-primary" data-toggle="modal" data-target="#modal-karyawan" data-backdrop="static" data-keyboard="false">Tambah Karyawan</button> <br><br>
+        <div class="dt-responsive table-responsive">
+          <table id="table-karyawan" class="table nowrap" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>NIP</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Tanggal</th>
+                <th>Opsi</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>No.</th>
+                <th>NIP</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Tanggal</th>
+                <th>Opsi</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
       <!-- tab karyawan -->
       <div role="tabpanel" class="tab-pane" id="training">...</div>
       <div role="tabpanel" class="tab-pane" id="karyawantraining">...</div>
     </div>
+    <!-- modals -->
+    <div class="modal fade modal-flex" id="modal-karyawan" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #337ab7 !important;">
+            <h4 class="modal-title" style="color: white;">Form Karyawan</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form-karyawan" method="post" autocomplete="false" accept-charset="utf-8">
+              <input type="hidden" name="id">
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> NIP </label>
+                <div class="col-sm-5">
+                  <input type="text"name="nip"id="nip"class="form-control"required="1"placeholder="nip karyawan"pattern="[0-9]{10,10}"minlength="10"maxlength="10"data-toggle="tooltip"data-placement="top"title="nip karyawan" autocomplete="off" autofocus/>
+                </div>
+                <div class="col-sm-5">
+                  <input type="text"name="nama"id="nama"class="form-control"required="1"placeholder="nama karyawan"pattern="[a-zA-Z\s]{3,35}"minlength="2"maxlength="35"data-toggle="tooltip"data-placement="top"title="nama karyawan" autocomplete="off"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> Jabatan </label>
+                <div class="col-sm-10">
+                  <input type="text"name="jabatan"id="jabatan"class="form-control"required="1"placeholder="jabatan karyawan"pattern="[a-zA-Z\s]{3,35}"minlength="2"maxlength="35"data-toggle="tooltip"data-placement="top"title="jabatan karyawan" autocomplete="off"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <button type="submit" hidden="1" id="sbtkaryawan" value="1"></button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="$('#sbtkaryawan').click()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modals -->
     <center>
       <small><a href="https://linkedin.com/in/hfzrmd">Copyright @ 2022. By Hafiz Ramadhan</a></small>
     </center>
@@ -60,18 +104,18 @@
 </body>
 <script type="text/javascript">
   $(document).ready(function() {
-        let table;
-        table = $("#table-karyawan").DataTable({
-            serverside: true,
-            ajax: {
-                type: "post",
-                url: "karyawan/data",
-            },
-            language: {
-                zeroRecords: "<center> Data tidak ditemukan </center>",
-            },
-            responsive: "true",
-        });
+    let table;
+    table = $("#table-karyawan").DataTable({
+      serverside: true,
+      ajax: {
+        type: "post",
+        url: "karyawan/data",
+      },
+      language: {
+        zeroRecords: "<center> Data tidak ditemukan </center>",
+      },
+      responsive: "true",
+    });
   });
 </script>
 </html>
