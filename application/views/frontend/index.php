@@ -98,7 +98,7 @@
     </div>
     <!-- modals -->
     <center>
-      <small><a href="https://linkedin.com/in/hfzrmd">Copyright @ 2022. By Hafiz Ramadhan</a></small>
+      <small><a href="https://linkedin.com/in/hfzrmd" target="_blank">Copyright @ 2022. By Hafiz Ramadhan</a></small>
     </center>
   </div>
 </body>
@@ -115,6 +115,21 @@
         zeroRecords: "<center> Data tidak ditemukan </center>",
       },
       responsive: "true",
+    });
+    $("#form-karyawan").submit(function(event) {
+      event.preventDefault();
+      
+      let url;
+      const data = $(this).serialize(), id = $("#id").val(); 
+      id ? url = "karyawan/edit" : url = "karyawan/simpan";
+      
+      if (confirm("Apa data yang anda masukan sudah benar ?")) {
+        $.post(url, data).done((res,xhr,status) => {
+
+        }).fail((xhr,status,err) => {
+
+        })
+      }
     });
   });
 </script>
