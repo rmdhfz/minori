@@ -92,7 +92,7 @@ class Model extends CI_Model {
 			json(response(false, 400, 'data karyawan tidak ditemukan'));
 		}
 		$hapus = $this->db->where('id', $id)->delete('karyawan');
-		if (!$edit) {
+		if (!$hapus) {
 			json(response(false, 500, 'gagal hapus data karyawan'));
 		}
 		json(response(true, 200, 'berhasil hapus data karyawan'));

@@ -38,7 +38,7 @@
                 <th>NIP</th>
                 <th>Nama</th>
                 <th>Jabatan</th>
-                <th>Tanggal</th>
+                <th>Tanggal Input</th>
                 <th>Opsi</th>
               </tr>
             </thead>
@@ -48,7 +48,7 @@
                 <th>NIP</th>
                 <th>Nama</th>
                 <th>Jabatan</th>
-                <th>Tanggal</th>
+                <th>Tanggal Input</th>
                 <th>Opsi</th>
               </tr>
             </tfoot>
@@ -64,10 +64,10 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header" style="background-color: #337ab7 !important;">
-            <h4 class="modal-title" style="color: white;">Form Karyawan</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+            <h4 class="modal-title" style="color: white;">Form Karyawan</h4>
           </div>
           <div class="modal-body">
             <form id="form-karyawan" method="post" autocomplete="false" accept-charset="utf-8">
@@ -130,7 +130,7 @@
       const data = $(this).serialize(), id = $("#id").val(); 
       id ? url = "karyawan/edit" : url = "karyawan/simpan";
       id ? act = 'edit' : act = 'simpan';
-      if (confirm("Apa data yang anda masukan sudah benar ?")) {
+      if (confirm("Apa data yang Anda masukan sudah benar ?")) {
         $.post(url, data).done((res,xhr,status) => {
           alert(`Berhasil ${act} data karyawan`);
           ReloadTable(table);
@@ -150,6 +150,16 @@
         $("#jabatan").val(res.data.jabatan);
         $("#modal-karyawan").modal('show');
       })
+    });
+    $("#table-karyawan").on('click', '#delete', function(event) {
+      event.preventDefault();
+      const id = $(this).data('id');
+      if (confirm("Apakah Anda yakin ingin menghapus data ini ? ")) {
+        $.post('karyawan/hapus', {id: id}).done((res,xhr,status) => {
+          alert("Data karyawan berhasil dihapus");
+          ReloadTable(table);
+        })
+      }
     });
   });
 </script>
